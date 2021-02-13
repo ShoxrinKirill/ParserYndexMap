@@ -16,6 +16,9 @@ def parse(url):
     #soup = BeautifulSoup(response.content, 'html.parser')
 
     soup = BeautifulSoup(response.content, 'html.parser')
+    a = soup.find('a', class_ = 'reviews-view__more')
+    response = requests.get('https://yandex.ru' + a.get('href'), headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
 
     items = soup.findAll('div', class_ = 'reviews-view__review')
     rating = ''
